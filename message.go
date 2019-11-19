@@ -26,6 +26,7 @@ type Message struct {
 	Status      string    `json:"status"`
 	To          string    `json:"to"`
 	Uri         string    `json:"uri"`
+	MediaList   string    `json:"media_list[0].sid"`
 }
 
 func (m *Message) IsSent() bool {
