@@ -11,7 +11,7 @@ Simple Twilio API wrapper in Go.
 As usual you can `go get` the twilio package by issuing:
 
 ```bash
-$ go get github.com/subosito/twilio
+$ go get github.com/luiquemassud/twilio
 ```
 
 Then you can use it on your application:
@@ -23,7 +23,7 @@ import (
 	"log"
 	"net/url"
 
-	"github.com/subosito/twilio"
+	"github.com/luiquemassud/twilio"
 )
 
 var (
