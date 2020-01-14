@@ -26,7 +26,6 @@ type Message struct {
 	Status      string    `json:"status"`
 	To          string    `json:"to"`
 	Uri         string    `json:"uri"`
-	MediaList   string    `json:"media_list[0].sid"`
 }
 
 func (m *Message) IsSent() bool {
@@ -112,7 +111,8 @@ func (s *MessageService) Get(sid string) (*Message, *Response, error) {
 type MessageListParams struct {
 	To       string
 	From     string
-	DateSent string
+	DateSentBefore string
+	DateSentAfter string
 	PageSize int
 }
 
@@ -126,7 +126,11 @@ func (s *MessageService) List(params MessageListParams) ([]Message, *Response, e
 	q := req.URL.Query()
 	for k, vals := range v {
 		for _, v := range vals {
-			if v != "" { // only set for non blank values
+			if k == "DateSentAfter" && v != ""{
+				q.Add("DateSent>", v)
+			} else if k == "DateSentBefore" && v != ""{
+				q.Add("DateSent<", v)
+			} else if v != "" { // only set for non blank values
 				q.Add(k, v)
 			}
 		}
